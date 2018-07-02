@@ -1,6 +1,6 @@
 /**
 * @Distance-weighted k-nearest Neighbor(DWKNN) for B4 Contest
-* @Reference:Gou, J., Du, L., Zhang, Y., & Xiong, T. (2012). A new distance-weighted k-nearest neighbor classifier. J. Inf. Comput. Sci, 9(February), 1429¨C1436.
+* @Reference:Gou, J., Du, L., Zhang, Y., & Xiong, T. (2012). A new distance-weighted k-nearest neighbor classifier. J. Inf. Comput. Sci, 9(February), 1429Â¨C1436.
 * @Caution:All of the features need to be the same typename!!!
 *
 * @Author: Zhihui Lu
@@ -11,8 +11,8 @@
 #include<string>
 #include<vector>
 #include<iomanip>
-#include"dataIO.h"
 #include"DWKNN.cpp"
+#include"dataIO.h"
 #include"ItkImageIO.h"
 #include"popcnt_JI.h"
 #include"sort_index.h"
@@ -40,8 +40,11 @@ int main(int argc, const char *argv[]) {
 	const std::string test_data_name_list_path = argv[8];
 	const std::string test_mask_list_path = argv[9];			//(.raw)
 	const std::string outdir = argv[10];
-	const std::string test_tumor_list_path = argv[11];			//for optimization(.raw)
-
+	std::string test_tumor_list_path;					//for optimization(.raw)
+		
+	if (argc == 12) {
+		test_tumor_list_path = argv[11];
+	}
 
 	const int size_x = 512;										//image size
 	const int size_y = 1024;
