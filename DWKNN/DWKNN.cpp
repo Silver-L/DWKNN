@@ -20,7 +20,7 @@ void DWKNN::create_data_path_list(T input_folder_path, T2 &name_list, T3 &featur
 	}
 }
 
-/* take out brightness and mask_index (for test_data) */
+/* extract label pixel and mask_index (for test_data) */
 template<class T, class T2, class T3, class T4>
 void DWKNN::take_bright_and_mask_index(T input, T2 &bright, T3 &index, T4 mask) {
 
