@@ -34,31 +34,31 @@ int main(int argc, const char *argv[]) {
 	const std::string feature_list_path = argv[2];
 	const std::string learn_folder_path = argv[3];
 	const std::string learn_data_name_list_path = argv[4];
-	const std::string learn_mask_list_path = argv[5];			//(.raw)
-	const std::string learn_tumor_list_path = argv[6];			//(.raw)
+	const std::string learn_mask_list_path = argv[5];	//(.raw)
+	const std::string learn_tumor_list_path = argv[6];	//(.raw)
 	const std::string test_folder_path = argv[7];
 	const std::string test_data_name_list_path = argv[8];
-	const std::string test_mask_list_path = argv[9];			//(.raw)
+	const std::string test_mask_list_path = argv[9];	//(.raw)
 	const std::string outdir = argv[10];
-	std::string test_tumor_list_path;					//for optimization(.raw)
+	std::string test_tumor_list_path;			//for optimization(.raw)
 		
 	if (argc == 12) {
 		test_tumor_list_path = argv[11];
 	}
 
-	const int size_x = 512;										//image size
+	const int size_x = 512;					//image size
 	const int size_y = 1024;
-	const int num_learn = 10;									//number of learning data
-	const int num_test = 10;									//number of test data
-	const int max_num_tumor = 10;								//max number of tumor
-	const int max_num_mask = 70;								//max number of mask
+	const int num_learn = 10;				//number of learning data
+	const int num_test = 10;				//number of test data
+	const int max_num_tumor = 10;				//max number of tumor
+	const int max_num_mask = 70;				//max number of mask
 
 	int num_feature;					//num of feature
 	int image_index;					//for saving image
 	int element;						//for calculate JI
 	double ji_max;
 
-	bool optimize_k = true;				//for k's optimization
+	bool optimize_k = true;					//for k's optimization
 	bool WKNN = true;					//DWKNN
 
 
@@ -73,8 +73,8 @@ int main(int argc, const char *argv[]) {
 	std::list<std::string> feature_list;					//name list of feature
 	std::list<std::string> learn_name_list;					//name list of learn data
 	std::list<std::string> test_name_list;					//name list of test data
-	std::string learn_txt_dir;								//for saving learning feature list
-	std::string test_txt_dir;								//for saving test feature list
+	std::string learn_txt_dir;						//for saving learning feature list
+	std::string test_txt_dir;						//for saving test feature list
 
 	Eigen::Matrix<T_label, Eigen::Dynamic, Eigen::Dynamic> learn_mask;
 	Eigen::Matrix<T_label, Eigen::Dynamic, Eigen::Dynamic> learn_tumor;
@@ -82,9 +82,9 @@ int main(int argc, const char *argv[]) {
 	Eigen::Matrix<T_label, Eigen::Dynamic, Eigen::Dynamic> test_tumor;
 	Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> learning_sample;
 
-	std::vector<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>> learn_data;							//learn_data ( size: num_of_data * (mask_pixel * feature))	(dim: 3)
-	std::vector<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>> test_data;							//test_data ( size: num_of_data * (mask_pixel * feature )) (dim: 3)
-	std::vector<std::vector<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>> distance;				//test_distance( size: num_of_test_data * (num_pixel * ( num_sample * num_feature)))
+	std::vector<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>> learn_data;					//learn_data ( size: num_of_data * (mask_pixel * feature))	(dim: 3)
+	std::vector<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>> test_data;					//test_data ( size: num_of_data * (mask_pixel * feature )) (dim: 3)
+	std::vector<std::vector<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>> distance;			//test_distance( size: num_of_test_data * (num_pixel * ( num_sample * num_feature)))
 	std::vector<std::vector<Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic>>> test_classified_index;		//test_classified_index( size: num_of_test_data * (num_pixel * ( num_sample * num_feature)))
 
 	std::vector<std::string> each_learn_txt_path;							//path of all features of each learning data(.txt) for loading data
@@ -94,14 +94,14 @@ int main(int argc, const char *argv[]) {
 	std::vector<std::vector<int>> class_tumor_index;						//tumor's pixel index
 	std::vector<std::vector<int>> class_mask_index;							//mask's pixel index (not include tumor)
 	std::vector<std::vector<unsigned char>> result_label;
-	std::vector<std::vector<double>> ji_vector;								//for saving csv
+	std::vector<std::vector<double>> ji_vector;							//for saving csv
 
 	std::vector<unsigned long long*>test_data_packed;						//for calculate JI
-	std::vector<double> learn_classified;									//tumor: +1 ,	mask: -1
+	std::vector<double> learn_classified;								//tumor: +1 ,	mask: -1
 	std::vector<double>	ji;
 	std::vector<double> ji_mean;
-	std::vector<int> classified_index;										//for sorting
-	std::vector<int> k_vector;												//for saving csv
+	std::vector<int> classified_index;								//for sorting
+	std::vector<int> k_vector;									//for saving csv
 
 	num_feature = dataIO::count_number_of_text_lines(feature_list_path);	//get num of feature
 
