@@ -4,7 +4,7 @@
 * @Caution:All of the features need to be the same typename!!!
 *
 * @Author: Zhihui Lu
-* @Date: 2018/06/18
+* @Date: 2018/10/18
 **/
 
 #include<iostream>
