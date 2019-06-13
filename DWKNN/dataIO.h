@@ -195,11 +195,11 @@ namespace dataIO {
 	* @usage: [Vector] [file_name] [num of elements]
 	**/
 	template< class T >
-	void write_bin(T &vector, std::string file_name, size_t num) {
+	void write_bin(T vector, std::string file_name, size_t num) {
 
 		/* check pass */
 		std::string path = erase_exten(file_name) + "\\";
-		create_folder(path.c_str());
+		check_folder(path.c_str());
 		
 		/* write */
 		FILE *fp;

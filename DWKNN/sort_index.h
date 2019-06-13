@@ -25,7 +25,7 @@ inline IndexSortFunctor<Ran> IndexSortCmp(const Ran iter_begin_, const Ran iter_
 }
 
 /* generate Unique Random Integers*/
-std::vector<int> generateUniqueRandomIntegers(size_t max, int num)
+static std::vector<int> generateUniqueRandomIntegers(size_t max, int num)
 {
 	int rnd = 0;		//seed 
 	std::mt19937_64 mt(rnd);
