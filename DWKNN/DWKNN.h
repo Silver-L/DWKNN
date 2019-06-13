@@ -13,7 +13,7 @@ public:
 	template<class T, class T2, class T3, class T4, class T5>
 	void create_data_path_list(T input_folder_path, T2 &name_list, T3 &feature_list, T4 &each_data_txt_path, T5 &output_folder_path);
 
-	/* take out brightness and mask_index (for test_data) */
+	/* extract label pixel and mask_index (for test_data) */
 	template<class T, class T2, class T3, class T4>
 	void take_bright_and_mask_index(T input, T2 &bright, T3 &index, T4 mask);
 

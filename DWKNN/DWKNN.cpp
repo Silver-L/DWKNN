@@ -27,7 +27,7 @@ void DWKNN::create_data_path_list(T input_folder_path, T2 &name_list, T3 &featur
 	}
 }
 
-/* extract brightness and mask_index (for test_data) */
+/* extract label pixel and mask_index (for test_data) */
 template<class T, class T2, class T3, class T4>
 void DWKNN::take_bright_and_mask_index(T input, T2 &bright, T3 &index, T4 mask) {
 
@@ -286,4 +286,3 @@ void DWKNN::process_k_nn(T &single_distance, T2 &single_test_classified_index, T
 	}
 	single_resule_label.push_back(buf_label);
 }
-
